@@ -4,8 +4,8 @@ const Statistics = () => {
   const { goodCount, neutralCount, badCount } = useCounters()
 
   const all = goodCount + neutralCount + badCount
-  const average = all === 0 ? 0 : ((goodCount - badCount) / all).toFixed(2)
-  const positive = all === 0 ? 0 : `${((goodCount / all) * 100).toFixed(2)} %` 
+  const average = all === 0 ? 0 : (goodCount - badCount) / all
+  const positive = all === 0 ? 0 : (goodCount / all) * 100
   
   return (
     <div>
@@ -17,7 +17,7 @@ const Statistics = () => {
           <tr><td>bad</td><td>{badCount}</td></tr>
           <tr><td>all</td><td>{all}</td></tr>
           <tr><td>average</td><td>{average}</td></tr>
-          <tr><td>positive</td><td>{positive}</td></tr>
+          <tr><td>positive</td><td>{positive} %</td></tr>
         </tbody>
       </table>
     </div>
