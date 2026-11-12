@@ -6,6 +6,7 @@ import { getAll, createNew, update } from './services/anecdotes'
 const useAnecdoteStore = create((set, get) => ({
   anecdotes: [],
   filter: "",
+  message: "",
   actions: {
     vote: async (id) => {
         const anecdote = get().anecdotes.find(a => a.id === id)
@@ -22,7 +23,8 @@ const useAnecdoteStore = create((set, get) => ({
     initialize: async () => {
       const anecdotes = await getAll()
       set({ anecdotes })
-    }
+    },
+    setMessage: message => set({ message }),
   },
 }))
 
@@ -34,3 +36,4 @@ export const useAnecdotes = () => {
 
 export const useActions = () => useAnecdoteStore((state) => state.actions)
 export const useFilter = () => useAnecdoteStore((state) => state.filter)
+export const useMessage = () => useAnecdoteStore((state) => state.message)

@@ -1,12 +1,14 @@
 import { useActions } from "../store"
 
 const AnecdoteForm = () => {
-    const { add } = useActions() 
+    const { add, setMessage } = useActions() 
 
     const addAnecdote = async (event) => {
         event.preventDefault()
         const content = event.target['new-anecdote'].value
         await add(content)
+        setMessage(`You created: ${content}`)
+        setTimeout(setMessage, 5000, '')
         event.target.reset()
     }
 

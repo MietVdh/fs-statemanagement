@@ -4,7 +4,13 @@ import Filter from "./Filter"
 const AnecdoteList = () => {
 
     const anecdotes = useAnecdotes()
-    const { vote } = useActions()
+    const { vote, setMessage } = useActions()
+
+    const handleVote = (anecdote) => {
+        vote(anecdote.id)
+        setMessage(`You voted '${anecdote.content}'`)
+        setTimeout(setMessage, 5000, '')
+    }
     
     return (
         <div>
@@ -16,7 +22,7 @@ const AnecdoteList = () => {
                 <div>{anecdote.content}</div>
                 <div>
                     has {anecdote.votes}
-                    <button onClick={() => vote(anecdote.id)}>vote</button>
+                    <button onClick={() => handleVote(anecdote)}>vote</button>
                 </div>
                 </div>
             ))}
