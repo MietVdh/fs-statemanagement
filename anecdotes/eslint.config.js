@@ -17,5 +17,6 @@ export default defineConfig([
       globals: globals.browser,
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
+    ignores: ["db.json"],
   },
 ])
