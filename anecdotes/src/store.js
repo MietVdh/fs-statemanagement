@@ -1,19 +1,19 @@
 import { create } from 'zustand'
-import { getAll, createNew } from './services/anecdotes'
+import { getAll, createNew, update } from './services/anecdotes'
 
 // const getId = () => (100000 * Math.random()).toFixed(0)
 
-const useAnecdoteStore = create((set) => ({
+const useAnecdoteStore = create((set, get) => ({
   anecdotes: [],
   filter: "",
   actions: {
-    vote: (id) => set(
-      state => ({
-        anecdotes: state.anecdotes.map(anecdote =>
-          anecdote.id === id ? { ...anecdote, votes: anecdote.votes + 1 } : anecdote
-        )
-      })
-    ),
+    vote: async (id) => {
+        const anecdote = get().anecdotes.find(a => a.id === id)
+        const updated = await update(id, { ...anecdote, votes: anecdote.votes + 1 })
+        set(state => ({
+          anecdotes: state.anecdotes.map(a => a.id === id ? updated : a)
+        })
+    )},
     add: async (content) => {
       const newAnecdote = await createNew(content)
       set(state => ({ anecdotes: [...state.anecdotes, newAnecdote]}))
