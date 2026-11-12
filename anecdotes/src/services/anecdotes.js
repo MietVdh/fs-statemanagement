@@ -30,7 +30,7 @@ const createNew = async (content) => {
 const update = async (id, anecdote) => {
     const response = await fetch(`${baseUrl}/${id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'applications/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(anecdote)
     })
 
