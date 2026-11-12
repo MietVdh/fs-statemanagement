@@ -1,4 +1,5 @@
 import { useAnecdotes, useActions } from "../store"
+import Filter from "./Filter"
 
 const AnecdoteList = () => {
 
@@ -7,6 +8,7 @@ const AnecdoteList = () => {
     
     return (
         <div>
+            <Filter />
             {anecdotes
                 .toSorted((a, b) => b.votes - a.votes)
                 .map((anecdote) => (
