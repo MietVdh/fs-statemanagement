@@ -41,4 +41,9 @@ const update = async (id, anecdote) => {
     return await response.json()
 }
 
-export { getAll, createNew, update }
+
+const deleteAnecdote = async (id) => {
+    return await fetch(`${baseUrl}/${id}`, { method: 'DELETE' })
+}
+
+export { getAll, createNew, update, deleteAnecdote }
